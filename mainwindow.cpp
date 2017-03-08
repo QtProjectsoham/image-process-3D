@@ -1,13 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include<QFileDialog>
-#include<math.h>
-#define d1 3
-#define d2 4
-#define d3 5
-#define xdimen 300
-#define ydimen 300
-#define zdimen 300
+#define d1 10
+#define d2 14
+#define d3 17
 struct node
 {
     int data;
@@ -15,7 +11,7 @@ struct node
 };
 //QRgb cclcolormap[12];
 unsigned short readShort(FILE *inff);
-int ipimg[xdimen][ydimen][zdimen],binarize[xdimen][ydimen][zdimen],a[xdimen][ydimen][zdimen],hist[xdimen][ydimen][zdimen],ccl[xdimen][ydimen][zdimen],component[12],cc=0;
+int ipimg[300][300][300],binarize[300][300][300],a[300][300][300],hist[300][300][300],ccl[300][300][300],component[12],cc=0;
 bool inputimg=false, dtimg=false, cclimg=false,fdtimg=false,bin=false,hg=false;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -603,8 +599,6 @@ void MainWindow::on_DT_clicked()
 {
     int i,j,k,min;
     int flag1;
-    double v;
-    unsigned short maxintendt=0;
     for(k=0;k<Zdim;k++)
     {
         for(j=0;j<Ydim;j++)
@@ -696,7 +690,6 @@ void MainWindow::on_DT_clicked()
                             }
 
                             a[i][j][k]=min;
-                            if(min>maxintendt)maxintendt=min;
                         }
                     }
                 }
@@ -776,7 +769,6 @@ void MainWindow::on_DT_clicked()
                                 flag1++;
                             }
                             a[i][j][k]=min;
-                            if(min>maxintendt)maxintendt=min;
                         }
                     }
                 }
@@ -785,17 +777,6 @@ void MainWindow::on_DT_clicked()
             if(flag1!=0)
                 printf("one iteration complete\n");*/
     }while(flag1!=0);
-    for(k=0;k<Zdim;k++)
-    {
-        for(j=0;j<Ydim;j++)
-        {
-            for(i=0;i<Xdim;i++)
-            {
-                        v=round((a[i][j][k]/(double)maxintendt)*255);
-                        a[i][j][k]=v;
-            }
-        }
-    }
     dtimg=true,bin=false,inputimg=false,cclimg=false,fdtimg=false,hg=false;
     drawimage();
 }
