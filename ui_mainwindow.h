@@ -74,7 +74,6 @@ public:
         label_YZ = new QLabel(centralWidget);
         label_YZ->setObjectName(QStringLiteral("label_YZ"));
         label_YZ->setGeometry(QRect(410, 330, 391, 291));
-        label_YZ->setFrameShape(QFrame::Box);
         label_YZ->setScaledContents(true);
         loadimage = new QPushButton(centralWidget);
         loadimage->setObjectName(QStringLiteral("loadimage"));
@@ -167,7 +166,6 @@ public:
         label_XZ = new QLabel(centralWidget);
         label_XZ->setObjectName(QStringLiteral("label_XZ"));
         label_XZ->setGeometry(QRect(410, 10, 391, 311));
-        label_XZ->setFrameShape(QFrame::Box);
         label_XZ->setScaledContents(true);
         ipfilename = new QLabel(centralWidget);
         ipfilename->setObjectName(QStringLiteral("ipfilename"));
